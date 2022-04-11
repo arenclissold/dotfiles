@@ -52,3 +52,6 @@
 
 [init]
   defaultBranch = master
+[user]
+	email = arenclissold@gmail.com
+	name = Aren Clissold
