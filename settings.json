@@ -90,5 +90,11 @@
     "workbench.colorTheme": "Atom One Dark",
     "[javascriptreact]": {
       "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "editor.colorDecorators": true,
+    "tailwindCSS.emmetCompletions": true,
+    "tailwindCSS.experimental.classRegex": [],
+    "editor.quickSuggestions": {
+      "strings": true
     }
 }
