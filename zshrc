@@ -66,5 +66,7 @@ export EDITOR=code
 # Set ipdb as the default Python debugger
 export PYTHONBREAKPOINT=ipdb.set_trace
 
+eval $(/opt/homebrew/bin/brew shellenv)
+
 # Use starship for better shell prompt
 eval "$(starship init zsh)"
