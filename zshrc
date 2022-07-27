@@ -22,10 +22,10 @@ type -a rbenv > /dev/null && eval "$(rbenv init -)"
 
 # Load nvm (to manage your node versions)
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
 # Call `nvm use` automatically in a directory with a `.nvmrc` file
+
 autoload -U add-zsh-hook
 load-nvmrc() {
   if nvm -v &> /dev/null; then
