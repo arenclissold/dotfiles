@@ -15,53 +15,34 @@ ZSH_DISABLE_COMPFIX=true
 # Actually load Oh-My-Zsh
 source "${ZSH}/oh-my-zsh.sh"
 unalias rm # No interactive rm by default (brought by plugins/common-aliases)
+unalias lt # we need `lt` for https://github.com/localtunnel/localtunnel
 
-# Load rbenv if installed (to manage your Ruby versions)
-export PATH="${HOME}/.rbenv/bin:${PATH}" # Needed for Linux/WSL
-eval "$(rbenv init -)"
+# load rbenv if it exists
+if command -v rbenv &> /dev/null; then
+  eval "$(rbenv init -)"
+fi
 
-# Load nvm (to manage your node versions)
+# load pyenv if it exists
+if command -v pyenv &> /dev/null; then
+  eval "$(pyenv init -)"
+fi
+
+# load nvm if it exists
 export NVM_DIR="$HOME/.nvm"
-  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
-# Call `nvm use` automatically in a directory with a `.nvmrc` file
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# automatically switch node version with .nvmrc
 autoload -U add-zsh-hook
 load-nvmrc() {
-  if nvm -v &> /dev/null; then
-    local node_version="$(nvm version)"
-    local nvmrc_path="$(nvm_find_nvmrc)"
-
-    if [ -n "$nvmrc_path" ]; then
-      local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-      if [ "$nvmrc_node_version" = "N/A" ]; then
-        nvm install
-      elif [ "$nvmrc_node_version" != "$node_version" ]; then
-        nvm use --silent
-      fi
-    elif [ "$node_version" != "$(nvm version default)" ]; then
-      nvm use default --silent
-    fi
+  if [[ -f .nvmrc && -r .nvmrc ]]; then
+    nvm use
+  elif [[ $(nvm version) != $(nvm version default)  ]]; then
+    echo "Reverting to nvm default version"
+    nvm use default
   fi
 }
-type -a nvm > /dev/null && add-zsh-hook chpwd load-nvmrc
-type -a nvm > /dev/null && load-nvmrc
-
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-export PIPENV_PYTHON="$PYENV_ROOT/shims/python"
-
-plugin=(
-  pyenv
-)
-
-eval "$(pyenv init -)"
-
-# Rails and Ruby uses the local `bin` folder to store binstubs.
-# So instead of running `bin/rails` like the doc says, just run `rails`
-# Same for `./node_modules/.bin` and nodejs
-export PATH="./bin:./node_modules/.bin:${PATH}:/usr/local/sbin"
+add-zsh-hook chpwd load-nvmrc
 
 # Store your own aliases in the ~/.aliases file and load the here.
 [[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
@@ -80,3 +61,6 @@ eval $(/opt/homebrew/bin/brew shellenv)
 
 # Use starship for better shell prompt
 eval "$(starship init zsh)"
+
+# nvmrc must be loaded after starship
+load-nvmrc
