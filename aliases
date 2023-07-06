@@ -2,6 +2,7 @@
 alias myip="curl https://ipinfo.io/json" # or /ip for plain-text ip
 alias l='exa -hl --group-directories-first --no-permissions --no-user --git'
 alias doco='docker-compose'
+alias code='code-insiders'
 
 # Aeon aliases
 alias dococ='docker-compose exec cms rails c'
