@@ -64,3 +64,5 @@ eval "$(starship init zsh)"
 
 # nvmrc must be loaded after starship
 load-nvmrc
+
+alias aeonctl='/Users/arenclissold/code/aeon/aeonctl/aeonctl'
