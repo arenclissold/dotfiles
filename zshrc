@@ -17,33 +17,6 @@ source "${ZSH}/oh-my-zsh.sh"
 unalias rm # No interactive rm by default (brought by plugins/common-aliases)
 unalias lt # we need `lt` for https://github.com/localtunnel/localtunnel
 
-# load rbenv if it exists
-if command -v rbenv &> /dev/null; then
-  eval "$(rbenv init -)"
-fi
-
-# load pyenv if it exists
-if command -v pyenv &> /dev/null; then
-  eval "$(pyenv init -)"
-fi
-
-# load nvm if it exists
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# automatically switch node version with .nvmrc
-autoload -U add-zsh-hook
-load-nvmrc() {
-  if [[ -f .nvmrc && -r .nvmrc ]]; then
-    nvm use
-  elif [[ $(nvm version) != $(nvm version default)  ]]; then
-    echo "Reverting to nvm default version"
-    nvm use default
-  fi
-}
-add-zsh-hook chpwd load-nvmrc
-
 # Store your own aliases in the ~/.aliases file and load the here.
 [[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
 
@@ -54,15 +27,12 @@ export LC_ALL=en_US.UTF-8
 export BUNDLER_EDITOR=code
 export EDITOR=code
 
-# Set ipdb as the default Python debugger
-export PYTHONBREAKPOINT=ipdb.set_trace
-
 eval $(/opt/homebrew/bin/brew shellenv)
 
 # Use starship for better shell prompt
 eval "$(starship init zsh)"
 
-# nvmrc must be loaded after starship
-load-nvmrc
-
-alias aeonctl='/Users/arenclissold/code/aeon/aeonctl/aeonctl'
+# load version managers after starship
+eval "$(pyenv init -)"
+eval "$(rbenv init -)"
+eval "$(fnm env --use-on-cd)"
