@@ -11,8 +11,8 @@
 
 [core]
   pager = less -FRSX
-  editor = code --wait
-	excludesfile = /Users/arenclissold/.gitignore_global
+  editor = zed
+    excludesfile = /Users/arenclissold/.gitignore_global
 
 [alias]
   co = checkout
