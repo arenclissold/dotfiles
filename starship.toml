@@ -1,0 +1,14 @@
+[docker_context]
+disabled = true
+
+[package]
+disabled = true
+
+[nodejs]
+disabled = true
+
+[ruby]
+disabled = true
+
+[aws]
+disabled = true

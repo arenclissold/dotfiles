@@ -26,6 +26,7 @@ export LC_ALL=en_US.UTF-8
 
 export BUNDLER_EDITOR=code
 export EDITOR=code
+export STARSHIP_CONFIG="$HOME/.starship.toml"
 
 eval $(/opt/homebrew/bin/brew shellenv)
 
