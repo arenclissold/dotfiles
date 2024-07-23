@@ -1,5 +1,6 @@
 # Get External IP / Internet Speed
 alias myip="curl https://ipinfo.io/json" # or /ip for plain-text ip
+alias lg="lazygit"
 alias l='exa -hl --group-directories-first --no-permissions --no-user --git'
 alias doco='docker compose'
 
