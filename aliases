@@ -1,9 +1,9 @@
 # Get External IP / Internet Speed
 alias myip="curl https://ipinfo.io/json" # or /ip for plain-text ip
 alias l='exa -hl --group-directories-first --no-permissions --no-user --git'
-alias doco='docker-compose'
+alias doco='docker compose'
 
 # Aeon aliases
-alias dococ='docker-compose exec cms rails c'
-alias docob='docker-compose exec cms /bin/bash'
+alias dococ='docker compose exec cms rails c'
+alias docob='docker compose exec cms /bin/bash'
 alias aeonctl='/Users/arenclissold/code/aeon/aeonctl/aeonctl'
