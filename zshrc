@@ -24,8 +24,8 @@ unalias lt # we need `lt` for https://github.com/localtunnel/localtunnel
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
-export BUNDLER_EDITOR=zed
-export EDITOR=zed
+export BUNDLER_EDITOR=code
+export EDITOR="code --wait"
 export STARSHIP_CONFIG="$HOME/.starship.toml"
 
 eval $(/opt/homebrew/bin/brew shellenv)
