@@ -8,3 +8,6 @@
 [user]
 	email = arenclissold@gmail.com
 	name = Aren Clissold
+
+[alias]
+  m = checkout master
