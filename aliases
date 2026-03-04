@@ -1,8 +1,6 @@
-alias lg="lazygit"
 alias pn="pnpm"
-alias doco='docker compose'
+alias lg="lazygit"
+alias lzd="lazydocker"
 
 # Aeon aliases
-alias dococ='docker compose exec cms rails c'
-alias docob='docker compose exec cms /bin/bash'
-alias aeonctl='/Users/arenclissold/code/aeon/aeonctl/aeonctl'
+alias aeonctl='/Users/arenclissold/code/aeonmedia/aeonctl/aeonctl'
