@@ -24,16 +24,17 @@ unalias lt # we need `lt` for https://github.com/localtunnel/localtunnel
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
-export BUNDLER_EDITOR=code
-export EDITOR="code --wait"
+export BUNDLER_EDITOR=zed
+export EDITOR="zed --wait"
 export STARSHIP_CONFIG="$HOME/.starship.toml"
+export PATH="$HOME/.local/bin:$PATH"
 
 eval $(/opt/homebrew/bin/brew shellenv)
 
 # Use starship for better shell prompt
 eval "$(starship init zsh)"
 
-# load version managers after starship
-eval "$(pyenv init -)"
-eval "$(rbenv init -)"
-eval "$(fnm env --use-on-cd)"
+# load version manager after starship
+eval "$(mise activate zsh)"
+
+eval "$(try init ~/code/tries)"
